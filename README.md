@@ -1,0 +1,92 @@
+# Android Automation Test – QA Engineer Technical Test
+
+This repository contains Android automation tests developed as part of the QA Engineer Technical Test.
+The goal of this project is to demonstrate test strategy, scenario selection, and clean automation implementation
+using Java, Appium, and Cucumber.
+
+---
+
+## 🧪 Scope of Automation
+
+The automation focuses on **high-value and high-risk user journeys**, rather than covering all possible UI interactions.
+
+### Automated Scenarios
+- End-to-End Happy Path Checkout
+- Add multiple products to cart and verify cart consistency
+- Update product quantity in cart
+- Remove product from cart
+- Checkout form validation (mandatory field – negative case)
+
+These scenarios were selected because they represent **core business flows** and common risk areas
+such as data consistency, validation, and order completion.
+
+### Non-Automated Scenarios (Documented Only)
+- Product sorting (by name and price)
+- UI cosmetic checks
+
+These scenarios were intentionally **not automated** to avoid flaky tests and low return on investment.
+They are better suited for manual exploratory testing or API-level validation.
+
+---
+
+## 🛠️ Tech Stack
+
+- Programming Language: **Java 11**
+- Automation Framework: **Appium**
+- BDD Framework: **Cucumber**
+- Test Runner: **JUnit**
+- Build Tool: **Maven**
+- Device: **Real Android Device**
+- OS: **macOS**
+
+---
+
+## 🏗️ Project Structure
+src/test
+├── java
+│ ├── base
+│ │ ├── DriverManager.java
+│ │ └── BaseTest.java
+│ ├── pages
+│ ├── stepdefinitions
+│ ├── utils
+│ │ └── WaitUtils.java
+│ └── runners
+│ └── TestRunner.java
+└── resources
+└── features
+
+
+- **Page Object Model (POM)** is used to separate UI interactions from test logic.
+- Explicit waits are implemented to ensure test stability and reduce flakiness.
+
+---
+
+## ⚙️ Prerequisites
+
+- Java 11
+- Android Studio & Android SDK
+- Appium Server
+- Node.js
+- Real Android device with USB Debugging enabled
+
+Verify device connection:
+```bash
+adb devices
+```
+
+▶️ How to Run the Tests
+
+1. Start Appium server
+2. Connect Android device
+3. Run the following command:
+```bash
+mvn clean test
+```
+Test execution reports will be generated after the run.
+
+📸 Test Evidence
+
+Test execution evidence (screenshots / recordings) is provided to demonstrate successful test runs
+and can be found in the repository.
+
