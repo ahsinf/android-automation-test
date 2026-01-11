@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
                 "stepdefinitions",
                 "base"
         },
+        tags = "@negative or @checkout",
         plugin = {
                 "pretty",
                 "html:target/cucumber-report.html"
