@@ -1,4 +1,3 @@
-@checkout
 Feature: Checkout Product
 
   As a user

@@ -48,6 +48,9 @@ public class CheckoutSteps {
 
     @When("user fills shipping address with valid data")
     public void userFillsShippingAddress() {
+        if (checkoutShippingAddressPage == null) {
+            checkoutShippingAddressPage = new CheckoutShippingAddressPage(DriverManager.getDriver());
+        }
         checkoutShippingAddressPage.fillShippingAddress();
         checkoutPaymentMethodPage = new CheckoutPaymentMethodPage(DriverManager.getDriver());
     }

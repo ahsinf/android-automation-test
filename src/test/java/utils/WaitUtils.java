@@ -6,6 +6,7 @@ import io.appium.java_client.screenrecording.CanRecordScreen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 
 
 import java.time.Duration;
@@ -21,8 +22,9 @@ public class WaitUtils {
     }
 
     // --- Helper Wait ---
-    public void waitForElementVisible(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement waitForElementVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void waitForElementClickable(By locator) {

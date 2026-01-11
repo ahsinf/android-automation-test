@@ -12,10 +12,32 @@ public class LoginPage {
     private By usernameField = By.id("com.saucelabs.mydemoapp.android:id/nameET");
     private By passwordField = By.id("com.saucelabs.mydemoapp.android:id/passwordET");
     private By loginButton = By.id("com.saucelabs.mydemoapp.android:id/loginBtn");
+    private By usernameError = By.id("com.saucelabs.mydemoapp.android:id/nameErrorTV");
+    private By passwordError = By.id("com.saucelabs.mydemoapp.android:id/passwordErrorTV");
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
         this.waitUtils = new WaitUtils(driver);
+    }
+
+    public void enterUsername(String username) {
+        waitUtils.waitForElementVisible(usernameField).sendKeys(username);
+    }
+
+    public void enterPassword(String password) {
+        waitUtils.waitForElementVisible(passwordField).sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        waitUtils.waitForElementVisible(loginButton).click();
+    }
+
+    public String getUsernameErrorMessage() {
+        return waitUtils.waitForElementVisible(usernameError).getText();
+    }
+
+    public String getPasswordErrorMessage() {
+        return waitUtils.waitForElementVisible(passwordError).getText();
     }
 
     public void login(String username, String password) {
