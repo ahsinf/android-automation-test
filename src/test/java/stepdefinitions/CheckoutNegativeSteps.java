@@ -2,7 +2,6 @@ package stepdefinitions;
 
 import base.DriverManager;
 import io.cucumber.java.en.*;
-import io.cucumber.java.en_scouse.An;
 import pages.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +41,7 @@ public class CheckoutNegativeSteps {
         checkoutShippingAddressPage = new CheckoutShippingAddressPage(DriverManager.getDriver());
     }
 
-    // --- SCENARIO : SHIPPING NEGATIVE ---
+    // --- SCENARIO : SHIPPING ADDRESS FORM NEGATIVE ---
     @When("user leaves mandatory shipping fields empty")
     public void userLeavesMandatoryFieldsEmpty() {
         // intentionally do nothing
@@ -60,7 +59,7 @@ public class CheckoutNegativeSteps {
                 .isTrue();
     }
 
-    // --- SCENARIO 2: PAYMENT NEGATIVE ---
+    // --- SCENARIO : PAYMENT METHOD FORM NEGATIVE ---
     @And("user is on payment method page")
     public void userIsOnPaymentMethodPage() {
         // Initialize payment object page
