@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LoginSteps {
 
     ProductListPage productListPage;
-    ProductDetailPage productDetailPage;
     CartPage cartPage;
     LoginPage loginPage;
 
@@ -51,15 +50,17 @@ public class LoginSteps {
 
     @Then("error message {string} should be displayed")
     public void errorMessageShouldBeDisplayed(String expectedMessage) {
-        String actualMessage = "";
+        String actualMessage;
         if (expectedMessage.toLowerCase().contains("username")) {
             actualMessage = loginPage.getUsernameErrorMessage();
         } else if (expectedMessage.toLowerCase().contains("password")) {
             actualMessage = loginPage.getPasswordErrorMessage();
+        }else {
+            actualMessage = loginPage.getErrorMessage();
         }
 
         assertThat(actualMessage)
-                .as("The error message that appears on the screen does not match expectations!")
+                .as("The error message is incorrect or the user is able to log in successfully!")
                 .isEqualTo(expectedMessage);
     }
 }

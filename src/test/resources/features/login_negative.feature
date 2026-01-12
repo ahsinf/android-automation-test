@@ -15,3 +15,9 @@ Feature: Login - Negative Scenarios
     And user leaves password field empty
     And user taps login button
     Then error message "Enter Password" should be displayed
+
+  Scenario: User cannot login with invalid credentials
+      When user enters username "testing"
+      And user enters password "testing"
+      And user taps login button
+      Then error message "Provided credentials do not match any user in this service." should be displayed

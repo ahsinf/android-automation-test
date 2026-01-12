@@ -14,6 +14,7 @@ public class LoginPage {
     private By loginButton = By.id("com.saucelabs.mydemoapp.android:id/loginBtn");
     private By usernameError = By.id("com.saucelabs.mydemoapp.android:id/nameErrorTV");
     private By passwordError = By.id("com.saucelabs.mydemoapp.android:id/passwordErrorTV");
+    private By genericError = By.xpath("//android.view.ViewGroup[contains(@content-desc, 'error-message')]//android.widget.TextView");
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
@@ -38,6 +39,10 @@ public class LoginPage {
 
     public String getPasswordErrorMessage() {
         return waitUtils.waitForElementVisible(passwordError).getText();
+    }
+
+    public String getErrorMessage() {
+        return waitUtils.waitForElementVisible(genericError).getText();
     }
 
     public void login(String username, String password) {
