@@ -12,6 +12,10 @@ public class CartPage {
     private By checkoutButton = By.id("com.saucelabs.mydemoapp.android:id/cartBt");
     private By cartItemCount = By.id("com.saucelabs.mydemoapp.android:id/itemsTV");
     private By totalPriceText = By.id("com.saucelabs.mydemoapp.android:id/totalPriceTV");
+    private By removeButton = By.id("com.saucelabs.mydemoapp.android:id/removeBt");
+    private By goShoppingBtn = By.id("com.saucelabs.mydemoapp.android:id/shoppingBt");
+    private By noItemText = By.id("com.saucelabs.mydemoapp.android:id/noItemTitleTV");
+    private By productOnCart = By.id("com.saucelabs.mydemoapp.android:id/productRV");
 
     public CartPage(AndroidDriver driver) {
         this.driver = driver;
@@ -32,5 +36,21 @@ public class CartPage {
     public double getTotalPrice() {
         String priceText = waitUtils.waitForElementVisible(totalPriceText).getText();
         return Double.parseDouble(priceText.replace("$", "")); // Remove the $ symbol and change it to double
+    }
+
+    public void removeItem() {
+        waitUtils.waitForElementVisible(removeButton).click();
+    }
+
+    public boolean isGoShoppingButtonDisplayed() {
+        return waitUtils.waitForElementVisible(goShoppingBtn).isDisplayed();
+    }
+
+    public int getCartItemCount() {
+        try {
+            return driver.findElements(productOnCart).size();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

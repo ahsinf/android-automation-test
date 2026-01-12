@@ -56,4 +56,16 @@ public class ProductListPage {
     public void openCart() {
         waitUtils.waitForElementVisible(AppiumBy.id(cartIconId)).click();
     }
+
+    public void selectProductByName(String productName) {
+        waitUtils.waitForElementVisible(AppiumBy.androidUIAutomator(catalogHeaderUi));
+
+        // Scroll search product
+        String scrollAction = String.format(scrollTemplate, productName);
+        driver.findElement(AppiumBy.androidUIAutomator(scrollAction));
+
+        // Click ImageView product
+        String dynamicXpath = String.format(productImgXpath, productName);
+        waitUtils.waitForElementVisible(AppiumBy.xpath(dynamicXpath)).click();
+    }
 }
