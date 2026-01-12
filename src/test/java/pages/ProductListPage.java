@@ -3,8 +3,12 @@ package pages;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import stepdefinitions.CartSteps;
 import utils.WaitUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductListPage {
     private AndroidDriver driver;
@@ -20,6 +24,10 @@ public class ProductListPage {
     private final String productImgXpath = "//android.widget.ImageView[@content-desc='%s']";
 
     private By firstProduct = By.xpath("//android.widget.ImageView[@content-desc=\"Sauce Lab Back Packs\"]");
+    private By sortButton = By.id("com.saucelabs.mydemoapp.android:id/sortIV");
+    private By priceAscOption = By.id("com.saucelabs.mydemoapp.android:id/priceAscCL");
+    private By productPrice = By.id("com.saucelabs.mydemoapp.android:id/priceTV");
+    private By productHeader = AppiumBy.androidUIAutomator("new UiSelector().text(\"Products\")");
 
     public ProductListPage(AndroidDriver driver) {
         this.driver = driver;
@@ -67,5 +75,34 @@ public class ProductListPage {
         // Click ImageView product
         String dynamicXpath = String.format(productImgXpath, productName);
         waitUtils.waitForElementVisible(AppiumBy.xpath(dynamicXpath)).click();
+    }
+
+    public boolean isProductListDisplayed() {
+        try {
+            return waitUtils.waitForElementVisible(productHeader).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void openSortMenu() {
+        waitUtils.waitForElementVisible(sortButton).click();
+    }
+
+    public void selectSortByPriceAscending() {
+        waitUtils.waitForElementVisible(priceAscOption).click();
+    }
+
+    public List<Double> getAllProductPrices() {
+        // Take all the price elements visible on the screen
+        List<WebElement> priceElements = driver.findElements(productPrice);
+        List<Double> prices = new ArrayList<>();
+
+        for (WebElement element : priceElements) {
+            // Remove the '$' symbol and change it to Double
+            String priceText = element.getText().replace("$", "").trim();
+            prices.add(Double.parseDouble(priceText));
+        }
+        return prices;
     }
 }
