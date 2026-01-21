@@ -91,6 +91,10 @@ src/test
 - Appium Server
 - Node.js
 - Real Android device with USB Debugging enabled
+- Notes : install apk Demo Application from this link
+```bash
+https://www.google.com/url?sa=D&q=https://github.com/saucelabs/my-demo-app-android/releases/download/1.0.13/mda-1.0.13-15.apk&ust=1769076660000000&usg=AOvVaw0fsqrk5rcOD8JrcAlbsUrL&hl=id&source=gmail
+```
 
 Verify device connection:
 ```bash
